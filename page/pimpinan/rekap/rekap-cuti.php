@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container-fluid" style="margin-bottom:200px">
 
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
@@ -23,9 +23,12 @@
                         <label for="jc">Jenis Pengajuan</label>
                         <select name="jc" class="form-control" id="status">
                             <option value="" disabled selected>-- Pilih Jenis--</option>
-                            <option value="Cuti">Cuti</option>
-                            <option value="Izin">Izin</option>
-                            <option value="Sakit">Sakit</option>
+                            <option value="Cuti Tahunan">Cuti Tahunan</opion>
+											<option value="Cuti Sakit">Cuti Sakit</option>
+											<option value="Cuti Alasan Penting">Cuti Alasan Penting</option>
+											<option value="Cuti Melahirkan">Cuti Melahirkan</option>
+											<option value="Cuti Besar">Cuti Besar</option>
+											<option value="Cuti Diluar Tanggungan Negara">Cuti Diluar Tanggungan Negara</option>
                         </select>
                     </div>
                     <input type="submit" name="filtercuti" class="form-control btn btn-success mt-3 ml-2"
@@ -33,8 +36,8 @@
                 </div>
             </form>
         </div>
-        <div class="col-md-4">
-            <form action="" method="POST">
+        <!-- <div class="col-md-4">
+            <form action="" method="POST" style="margin-left: 50px;">
                 <div class="form-check form-check-inline border p-2">
                     <div class="form-group">
                         <label for="mulai">Mulai Tanggal</label>
@@ -45,31 +48,31 @@
                         <label for="sampai">Sampai Tanggal</label>
                         <input type="date" name="sampai" class="form-control">
                     </div>
-                    <!-- <div class="form-group ml-1" style="width:150px">
+                    <div class="form-group ml-1" style="width:150px">
                         <label for="status">Status</label>
                         <select name="status" name="status" class="form-control" id="status">
                             <option disabled selected">-- Pilih --</option>
                             <option value="Masuk">Masuk</option>
                             <option value="Keluar">Keluar</option>
                         </select>
-                    </div> -->
+                    </div>
                     <input type="submit" name="filtewp" class="form-control btn btn-primary mt-3 ml-2 w-50"
                         value="Filter Waktu">
                 </div>
             </form>
-        </div>
+        </div> -->
     </div>
 
 
-    <div class="table-responsive">
+    <div class="table-responsive mt-4">
         <table id="datatabel" class="table table-bordered table-hover" width="100%">
             <thead class="table-info">
                 <tr align="center">
                     <th>No</th>
-                    <th>ID Pegawai</th>
-                    <th>Nama</th>
+                    <th>Pegawai</th>
                     <th>Jenis</th>
                     <th>Waktu Pengajuan</th>
+                    <th>Akhir</th>
                     <th>Bukti</th>
                     <th>Status</th>
                 </tr>
@@ -77,15 +80,24 @@
             <tbody>
                 <?php
                         if(isset($_POST['filtercuti'])){
-                            $cuti = $_POST['jc'] == 'Cuti';
-                            $izin = $_POST['jc'] == 'Izin';
-                            $sakit = $_POST['jc'] == 'Sakit';
+                            $cutit = $_POST['jc'] == 'Cuti Tahunan';
+                            $cutis = $_POST['jc'] == 'Cuti Sakit';
+                            $cutia = $_POST['jc'] == 'Cuti Alasan Penting';
+                            $cutim = $_POST['jc'] == 'Cuti Melahirkan';
+                            $cutib = $_POST['jc'] == 'Cuti Besar';
+                            $cutid = $_POST['jc'] == 'Cuti Diluar Tanggungan Negara';
 
-                            if($cuti){
+                            if($cutit){
                                 include 'fil_cuti.php';
-                            }elseif($izin){
+                            }elseif($cutis){
                                 include 'fil_cuti.php';
-                            }elseif($sakit){
+                            }elseif($cutia){
+                                include 'fil_cuti.php';
+                            }elseif($cutim){
+                                include 'fil_cuti.php';
+                            }elseif($cutib){
+                                include 'fil_cuti.php';
+                            }elseif($cutib){
                                 include 'fil_cuti.php';
                             }
                             else{
@@ -111,10 +123,10 @@
                             ?>
                         <tr align="center">
                             <td><?=$no++?></td>
-                            <td><?php echo $row['id_pegawai']; ?></td>
-                            <td><?php echo $row['nama']; ?></td>
-                            <td><?php echo $row['2']; ?></td>
+                            <td><?php echo $row['id_pegawai']; ?><br><b><?php echo $row['nama']; ?></b></td>
+                            <td><?php echo $row['jenis_cuti']; ?></td>
                             <td><?php echo date('d-m-Y', strtotime($row['waktu_pengajuan'])); ?></td>
+                            <td><?php echo date('d-m-Y', strtotime($row['akhir'])); ?></td>
                             <td>
                             <?php
                                 $bukti = $row['bukti'];

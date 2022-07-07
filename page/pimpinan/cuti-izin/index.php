@@ -1,48 +1,46 @@
 <div class="container-fluid">
 
-    <div class="row justify-content-center">
-        <div class="col-md-8 col-12 bg-white p-5">
-            <!-- Page Heading -->
-            <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                <h1 class="h3 mb-0 text-gray-800">Cuti Atau Izin Pegawai</h1>
-                <div class="btn-right">
-                    <a class='btn btn-secondary rounded-2' href="?page=cuti-add">Tambah Data</a>
-                    <a class='btn btn-primary rounded-2 text-white' onclick='print_d()'> Cetak Data
-                        <script>
-                            function print_d() {
-                                window.open('../../cetak_data/cetak_cuti.php?id=<?=$_SESSION['nik']?>', '_blank');
-                            }
-                        </script>
-                    </a>
-                    
-                </div>
-            </div>
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Cuti Atau Izin Pimpinan</h1>
+        <div class="btn-right">
+           
+            <!-- <a class='btn btn-primary rounded-2 text-white' onclick='print_d()'> Cetak Data
+                <script>
+                    function print_d() {
+                        window.open('../../cetak_data/cetak_cuti.php?id=<?=$_SESSION['nik']?>', '_blank');
+                    }
+                </script>
+            </a> -->
+        </div>
+    </div>
 
-            <div class="table-responsive">
-                <table id="datatabel" class="table table-bordered table-hover" width="100%">
-                    <thead class="table-info">
-                        <tr align="center">
-                            <th>No</th>
-                            <th>Pegawai</th>
-                            <th>Jenis</th>
-                            <th>Waktu Pengajuan</th>
-                            <th>Bukti</th>
-                            <th>Status</th>
-                            <th>aksi</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                        $nik = $_SESSION['nik'];
-                        $no = 1;
-					 $sqlabsenmsk = mysqli_query($koneksi, "SELECT * FROM cuti
+    <div class="table-responsive">
+        <table id="datatabel" class="table table-bordered table-hover" width="100%">
+            <thead class="table-info">
+                <tr align="center">
+                    <th>No</th>
+                    <th>Pegawai</th>
+                    <th>Jenis</th>
+                    <th>Waktu Pengajuan</th>
+                    <th>Bukti</th>
+                    <th>Status</th>
+                    <th>aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                    $no = 1;
+                    $nik = $_SESSION['nik'];
+					$sqlabsenmsk = mysqli_query($koneksi, "SELECT * FROM cuti
                      INNER JOIN data_pegawai ON cuti.id_pegawai = data_pegawai.id_pegawai
-                     WHERE nik='$nik'
+                     WHERE nik='$nik' ORDER BY id_cuti DESC
                     ");
-                     while($row = mysqli_fetch_assoc($sqlabsenmsk))
+                     while($row = mysqli_fetch_array($sqlabsenmsk))
+
                      {
 					?>
-                        <tr align="center">
+                   <tr align="center">
                             <td><?=$no++?></td>
                             <td><?php echo $row['id_pegawai']; ?><br><b><?php echo $row['nama']; ?></b></td>
                             <td><?php echo $row['jenis_cuti']; ?></td>
@@ -114,18 +112,14 @@
                                 </div>
                             </td>
                         </tr>
-                        <?php
+                <?php
 								}
 								mysqli_close($koneksi); 
 								?>
-                    </tbody>
-                </table>
-                <div class="btn-kembali text-right pt-5 pr-4">
-                    <a href="?page=dashboard" class="btn btn-success">Kembali</a>
-                </div>
-            </div>
-        </div>
+            </tbody>
+        </table>
+
     </div>
 
-</div>
 
+</div>

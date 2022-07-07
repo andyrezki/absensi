@@ -18,30 +18,34 @@
     <div class="row mt-2">
         <div class="col-md-4">
             <form action="" method="POST">
-                <div class="form-check form-check-inline border p-2">
-                    <div class="form-group">
-                        <label for="mulai">Mulai Tanggal</label>
-                        <input type="date" name="mulai" class="form-control">
+                <div class="border p-2">
+                    <div class="form-check form-check-inline">
+                        <div class="form-group">
+                            <label for="mulai">Mulai Tanggal</label>
+                            <input type="date" style="width:180px" name="mulai" class="form-control">
+                        </div>
+                        
+                        <div class="form-group ml-1 w-50">
+                            <label for="sampai">Sampai Tanggal</label>
+                            <input type="date" style="width:180px" name="sampai" class="form-control">
+                        </div>
                     </div>
-                    
-                    <div class="form-group ml-1">
-                        <label for="sampai">Sampai Tanggal</label>
-                        <input type="date" name="sampai" class="form-control">
+                        <div class="cl d-flex justify-content-center">
+                            <input type="submit" name="filter" class="form-control btn btn-success w-25 mr-1"
+                            value="Filter">
+                            <input class='btn btn-primary w-25' name="cetak" onclick='print_d()' value="Cetak">
+                                <script>
+                                    function print_d() {
+                                        window.open('../../cetak_data/cetak_kenaikan_pangkat.php?mulai=<?=$_POST['mulai']?>&akhir=<?=$_POST['sampai']?>', '_blank');
+                                    }
+                                </script>
+                            </input>
+                        </dov>
                     </div>
-                    <!-- <div class="form-group ml-1" style="width:150px">
-                        <label for="status">Status</label>
-                        <select name="status" name="status" class="form-control" id="status">
-                            <option disabled selected">-- Pilih --</option>
-                            <option value="Masuk">Masuk</option>
-                            <option value="Keluar">Keluar</option>
-                        </select>
-                    </div> -->
-                    <input type="submit" name="filter" class="form-control btn btn-success mt-3 ml-2 w-50"
-                        value="Filter">
-                </div>
+            </div>
             </form>
         </div>
-        <div class="col-md-4" style="margin-left: 90px;">
+        <!-- <div class="col-md-4" style="margin-left: 90px;">
             <form action="../../cetak_data/cetak_kenaikan_pangkat.php" target="_blank" method="POST">
                 <div class="form-check form-check-inline border p-2">
                     <div class="form-group">
@@ -57,7 +61,7 @@
                         value="Print">
                 </div>
             </form>
-        </div>
+        </div> -->
     </div>
 
 

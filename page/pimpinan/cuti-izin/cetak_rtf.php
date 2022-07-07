@@ -33,6 +33,14 @@
       $temfile = str_replace('akhir', date('d-m-Y', STRTOTIME($data['akhir'])),  $temfile);
       $temfile = str_replace('kmb', date('d-m-Y', STRTOTIME($kembali)),  $temfile);
 
+      if($data['nama'] == 'Hamdah, SP, MT.'){
+        $temfile = str_replace('ket','WALIKOTA',  $temfile);
+        $temfile = str_replace('ttd', 'H Muhammad Aditya Mufti Ariffin, SH, MH',  $temfile);
+      }else{
+        $temfile = str_replace('ket','KEPALA DINAS',  $temfile);
+        $temfile = str_replace('ttd', 'Hamdah, SP, MT.',  $temfile);
+      }
+
         header("Content-type: application/msword");
         header("Content-disposition: inline; filename=cuti.rtf");
         header("Content-length: " . strlen($temfile));

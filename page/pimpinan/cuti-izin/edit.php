@@ -7,7 +7,14 @@
 ?>
 <div class="container-fluid">
 
-	<div class="container pt-2">
+<!-- Page Heading -->
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Edit Data Absen Masuk</h1>
+</div>
+
+    <body class="d-flex flex-column h-100"  style='background-color: #7df9ff;'>
+        <main class="flex-shrink-0" style="margin-bottom:100px">
+		<div class="container pt-2">
 		<div class="row justify-content-lg-center">
 			<div class="col-lg-10">
 				<div class="card border-0 shadow-sm">
@@ -88,4 +95,8 @@
 			</div>
 		</div>
 	</div>
+        </main>
+
+    </body>
+
 </div>

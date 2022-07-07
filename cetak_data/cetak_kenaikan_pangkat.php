@@ -187,9 +187,10 @@ $tglnow = $data;
                 <tbody>
 
                 <?php
-                    if(isset($_POST['cetak'])){
-                        $mulai = $_POST['mulai'];
-                        $sampai = $_POST['sampai'];
+                    // var_dump($_GET);
+                    if(isset($_GET['mulai']) && isset($_GET['akhir'])){
+                        $mulai = $_GET['mulai'];
+                        $sampai = $_GET['akhir'];
 
                         $no = 1;
                         $sql = mysqli_query($koneksi,"SELECT * FROM riwayat_pangkat 
@@ -213,7 +214,7 @@ $tglnow = $data;
                                 <td>'.$idp.'</td>
                                 <td>'.$nama.'</td>
                                 <td>'.$pangkatlm.'</td>
-                                <td>'.$pangkat.' '.($gol).'</td>
+                                <td>'.$pangkat.'<br>('.$gol.')</td>
                                 <td>'.$tgl.'</td>
 
                             </tr>
@@ -243,7 +244,7 @@ $tglnow = $data;
                                 <td>'.$idp.'</td>
                                 <td>'.$nama.'</td>
                                 <td>'.$pangkatlm.'</td>
-                                <td>'.$pangkat.' '.($gol).'</td>
+                                <td>'.$pangkat.'<br>('.$gol.')</td>
                                 <td>'.$tgl.'</td>
 
                             </tr>
@@ -271,7 +272,7 @@ $tglnow = $data;
                                 <td>'.$idp.'</td>
                                 <td>'.$nama.'</td>
                                 <td>'.$pangkatlm.'</td>
-                                <td>'.$pangkat.' '.($gol).'</td>
+                                <td>'.$pangkat.'<br>('.$gol.')</td>
                                 <td>'.$tgl.'</td>
 
                             </tr>

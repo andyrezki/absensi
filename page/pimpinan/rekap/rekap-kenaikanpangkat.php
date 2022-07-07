@@ -38,10 +38,11 @@
                     </div> -->
                     <input type="submit" name="filter" class="form-control btn btn-success mt-3 ml-2 w-50"
                         value="Filter">
+                     
                 </div>
             </form>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-4" style="margin-left: 90px;">
             <form action="../../cetak_data/cetak_kenaikan_pangkat.php" target="_blank" method="POST">
                 <div class="form-check form-check-inline border p-2">
                     <div class="form-group">
@@ -61,7 +62,7 @@
     </div>
 
 
-    <div class="table-responsive">
+    <div class="table-responsive" style="margin-top: 10px;">
         <table id="datatabel" class="table table-bordered table-hover" width="100%">
             <thead class="table-info">
                 <tr align="center">
@@ -90,6 +91,7 @@
                             INNER JOIN data_pegawai ON riwayat_pangkat.id_pegawai = data_pegawai.id_pegawai
                             INNER JOIN pangkat ON data_pegawai.id_pangkat = pangkat.id_pangkat");
                              while($row = mysqli_fetch_array($sqlfilter))
+                          
                              {
                             ?>
                                 <tr align="center">

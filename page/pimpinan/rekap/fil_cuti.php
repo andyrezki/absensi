@@ -54,7 +54,7 @@
         $no = 1;
         $sqlabsenmsk = mysqli_query($koneksi, "SELECT * FROM cuti
         INNER JOIN data_pegawai ON cuti.id_pegawai = data_pegawai.id_pegawai
-        WHERE cuti.jenis='$jenis'
+        WHERE cuti.jenis_cuti='$jenis'
         ");
         while($row = mysqli_fetch_array($sqlabsenmsk))
 
@@ -62,10 +62,10 @@
         ?>
         <tr align="center">
             <td><?=$no++?></td>
-            <td><?php echo $row['id_pegawai']; ?></td>
-            <td><?php echo $row['nama']; ?></td>
-            <td><?php echo $row['2']; ?></td>
+            <td><?php echo $row['id_pegawai']; ?><br><b><?php echo $row['nama']; ?></b></td>
+            <td><?php echo $row['jenis_cuti']; ?></td>
             <td><?php echo date('d-m-Y', strtotime($row['waktu_pengajuan'])); ?></td>
+            <td><?php echo date('d-m-Y', strtotime($row['akhir'])); ?></td>
             <td>
                 <?php
                             $bukti = $row['bukti'];

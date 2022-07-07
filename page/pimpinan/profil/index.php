@@ -19,18 +19,18 @@
     WHERE id_user='$id'");
     $data1 = mysqli_fetch_assoc($ambluser);
 ?>
-<div class="container rounded bg-white">
+<div class="container rounded bg-white shadow-sm" style="margin-bottom:100px;">
     <div class="row">
-        <div class="col-md-3 border-right">
-            <div class="d-flex flex-column align-items-center text-center p-3 pt-5 border-bottom">
-                <img class="rounded-circle mt-5" width="150px" src="../../assets/img/foto/<?=$data1['foto']?>"><span
-                    class="font-weight-bold"><?=$nama?></span><span
+        <div class="col-md-4 border-right">
+            <div class="d-flex flex-column align-items-center text-center p-3 pt-2 border-bottom">
+                <img class="rounded mt-5" style="width:150px;height:150px;max-width:150px;max-height:150px" src="../../assets/img/foto/<?=$data1['foto']?>"><span
+                    class="font-weight-bold mt-3"><?=$nama?></span><span
                     class="text-black-50"><?=$data1['email']?></span><span>
                 </span>
                 <form action="?page=unggah-foto&id=<?=$data1['nik']?>" method="POST" enctype="multipart/form-data"
-                    class="mt-4">
+                    class="mt-5">
                     <input type="file" name="foto" id="img" style="display:none;" />
-                    <label for="img"><i class="bi bi-card-image"></i> Ubah Foto</label>
+                    <label for="img">--->Ubah Foto<---</label>
                     <br>
                     <input type="submit" name="submit" class="btn btn-primary btn-sm mt-2">
                 </form>
@@ -47,7 +47,7 @@
             </div> -->
         </div>
         <div class="col-md-8 col-12">
-            <div class="p-5">
+            <div class="" style="padding:50px 50px">
                 <div class="d-flex justify-content-between align-items-center mb-3">
                     <h4 class="text-right">Profile Settings</h4>
                 </div>
@@ -69,10 +69,8 @@
                                 value="<?=$data1['telp']?>"></div>
                         <div class="col-md-12"><label class="labels">Jenis</label>
                             <select name="jenis" class="form-control">
-                                <option disabled selected>-- Pilih --</option>
                                 <option value="PNS" <?php if($data['jenis'] == 'PNS') echo 'selected'; ?>>PNS</option>
-                                <option value="HONORER" <?php if($data['jenis'] == 'HONORER') echo 'selected'; ?>>
-                                    HONORER</option>
+                               
                             </select>
                         </div>
                         <div class="form-group col-12 col-md-12">
@@ -130,10 +128,9 @@
                        
                             </div> -->
                     </div>
-                    <div class="mt-5 text-center">
+                    <div class="mt-5 text-center border-top">
                         <input class="btn btn-primary profile-button" type="submit" name="submit"
                             value="Save Profile"></input>
-                        <a href="?page=dashboard" class="btn btn-danger">Kembali</a>
                     </div>
                 </form>
             </div>

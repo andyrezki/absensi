@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container-fluid" style="margin-bottom:200px">
 
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
@@ -15,36 +15,26 @@
         </div>
     </div>
                     
-    <!-- <div class="row">
-        <div class="col-md-12">
+    <div class="row mt-2">
+    <div class="col-md-4">
             <form action="" method="POST">
                 <div class="form-check form-check-inline border p-2">
-                    <div class="form-group">
-                        <label for="mulai">Mulai Tanggal</label>
-                        <input type="date" name="mulai" class="form-control">
-                    </div>
-                    <div class="form-group ml-1">
-                        <label for="sampai">Sampai Tanggal</label>
-                        <input type="date" name="sampai" class="form-control">
-                    </div> -->
-                    <!-- <div class="form-group ml-1" style="width:150px">
+                    <div class="form-group ml-1" style="width:200px">
                         <label for="status">Status</label>
                         <select name="status" class="form-control" id="status">
-                            <option disabled selected">-- Pilih --</option>
+                            <option selected">-- Pilih --</option>
                             <option value="Masuk">Masuk</option>
                             <option value="Keluar">Keluar</option>
                         </select>
-                    </div> -->
-                    <!-- <input type="submit" name="submit" class="form-control btn btn-primary mt-3 ml-2"
-                        value="Cetak">
+                    </div>
+                    <input type="submit" name="filterabsen" class="form-control btn btn-primary mt-3 ml-2"
+                        value="filter" style="width:100px">
                 </div>
             </form>
         </div>
-    </div> -->
-    <div class="row mt-2">
-        <div class="col-md-4">
+        <!-- <div class="col-md-4">
             <form action="" method="POST">
-                <div class="form-check form-check-inline border p-2">
+                <div class="form-check form-check-inline border p-2" style="margin-left:-150px">
                     <div class="form-group">
                         <label for="mulai">Mulai Tanggal</label>
                         <input type="date" name="mulai" class="form-control">
@@ -54,22 +44,22 @@
                         <label for="sampai">Sampai Tanggal</label>
                         <input type="date" name="sampai" class="form-control">
                     </div>
-                    <!-- <div class="form-group ml-1" style="width:150px">
+                    <div class="form-group ml-1" style="width:150px">
                         <label for="status">Status</label>
                         <select name="status" name="status" class="form-control" id="status">
                             <option disabled selected">-- Pilih --</option>
                             <option value="Masuk">Masuk</option>
                             <option value="Keluar">Keluar</option>
                         </select>
-                    </div> -->
+                    </div>
                     <input type="submit" name="filter" class="form-control btn btn-success mt-3 ml-2 w-50"
                         value="Filter">
                 </div>
             </form>
-        </div>
-        <div class="col-md-4">
+        </div> -->
+        <!-- <div class="col-md-4">
             <form action="../../cetak_data/cetak_absen.php" target="_blank" method="POST">
-                <div class="form-check form-check-inline border p-2">
+                <div class="form-check form-check-inline border p-2"  style="margin-left:-5px">
                     <div class="form-group">
                         <label for="mulai">Mulai Tanggal</label>
                         <input type="date" name="mulai" class="form-control">
@@ -79,27 +69,15 @@
                         <label for="sampai">Sampai Tanggal</label>
                         <input type="date" name="sampai" class="form-control">
                     </div>
-                    <!-- <div class="form-group ml-1" style="width:150px">
-                        <label for="status">Status</label>
-                        <select name="status" name="status" class="form-control" id="status">
-                            <option disabled selected">-- Pilih --</option>
-                            <option value="Masuk">Masuk</option>
-                            <option value="Keluar">Keluar</option>
-                        </select>
-                    </div> -->
-                    <input type="submit" name="cetak" class="form-control btn btn-primary mt-3 ml-2 w-50"
-                        value="Print">
-                </div>
-            </form>
-        </div>
-    </div>
+                </div> -->
 
 
-    <div class="table-responsive">
+    <div class="table-responsive mt-4">
         <table id="datatabel" class="table table-bordered table-hover" width="100%">
             <thead class="table-info">
                 <tr align="center">
-                    <th>No Absen</th>
+                    <th>No</th>
+                    <th>NIK</th>
                     <th>nama</th>
                     <th>Tgl</th>
                     <th>Waktu Masuk</th>
@@ -110,22 +88,35 @@
             </thead>
             <tbody>
                 <?php
-                        
-                        if(isset($_POST['filter'])){
+                        if(isset($_POST['filterabsen'])){
+                            $m = $_POST['status'] == 'Masuk';
+                            $k = $_POST['status'] == 'Keluar';
+
+                            if($m){
+                                include 'fil_absen1.php';
+                            }elseif($k){
+                                include 'fil_absen1.php';
+                            }
+                        }
+
+                        elseif(isset($_POST['filter'])){
                             $mulai = $_POST['mulai'];
                             $sampai = $_POST['sampai'];
-
+                        
                             if($mulai AND $sampai){
                                 include 'fil_absen.php';
                             }
+                     
                         }else{
+                            $no=1;
                             $sqlfilter = mysqli_query($koneksi, "SELECT * FROM absensi
                             INNER JOIN data_pegawai ON absensi.id_pegawai = data_pegawai.id_pegawai");
                              while($row = mysqli_fetch_array($sqlfilter))
                              {
                             ?>
                                 <tr align="center">
-                                <td><?php echo $row['0']; ?></td>
+                                <td><?=$no++ ?></td>
+                                <td><?php echo $row['1']; ?></td>
                                 <td><?php echo $row['8']; ?></td>
                                 <td><?php echo date('d-m-Y', strtotime($row['2'])); ?></td>
                                 <td><?php echo $row['3']; ?></td>

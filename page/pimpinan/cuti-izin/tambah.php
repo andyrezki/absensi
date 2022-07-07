@@ -3,29 +3,24 @@
 		$query = mysqli_query($koneksi, "SELECT * FROM data_pegawai where nik='$nik'");
 		$data = mysqli_fetch_assoc($query)			
 	?>
-<div class="container-fluid">
 
-	<div class="container pt-2">
+<div class="container-fluid">
+	<div class="container pt-2" style="margin-bottom:100px">
 		<div class="row justify-content-lg-center">
 			<div class="col-lg-10">
 				<div class="card border-0 shadow-sm">
 					<div class="d-flex justify-content-between py-2 px-4 border-bottom">
 						<h1 class="h3 mb-0 text-gray-800">Tambah Data Cuti Atau Izin</h1>
-						<div class="btn-kmbali">
-						<a href="?page=cuti" class="btn btn-success">Kembali</a>
-						</div>
 					</div>
-			
 					<div class="card-body d-grid p-5">
-						<form action="?page=cuti-prosesadd" method="post"
-							enctype="multipart/form-data">
+						<form action="?page=cuti-prosesadd" method="post" enctype="multipart/form-data">
 							<input type="hidden" name="id_pegawai" value="<?=$data['id_pegawai']?>">
 							<!-- <input type="hidden" name="idabsen"> -->
 							<div class="row">
 								<div class="form-group col-12 col-md-12">
 									<label for="nama" class="col-form-label">nama</label>
-									<input type="text" value="<?=$data['nama']?>" name="nama"
-										class="form-control" readonly="">
+									<input type="text" value="<?=$data['nama']?>" name="nama" class="form-control"
+										readonly="">
 								</div>
 							</div>
 							<div class="row">
@@ -39,7 +34,8 @@
 											<option value="Cuti Alasan Penting">Cuti Alasan Penting</option>
 											<option value="Cuti Melahirkan">Cuti Melahirkan</option>
 											<option value="Cuti Besar">Cuti Besar</option>
-											<option value="Cuti Diluar Tanggungan Negara">Cuti Diluar Tanggungan Negara</option>
+											<option value="Cuti Diluar Tanggungan Negara">Cuti Diluar Tanggungan Negara
+											</option>
 										</select>
 									</div>
 								</div>

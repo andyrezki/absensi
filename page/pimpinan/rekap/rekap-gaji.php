@@ -27,12 +27,21 @@
                             <option value="HONORER">HONORER</option>
                         </select>
                     </div>
-                    <input type="submit" name="filter" class="form-control btn btn-primary text-center w-100"
-                        value="Filter">
+                    <div class="cl d-flex justify-content-center">
+                        <input type="submit" name="filter" class="form-control btn btn-primary text-center w-25 mr-1"
+                            value="Filter">
+                            <input class='btn btn-success w-25' onclick='print_d()' value="Cetak">
+                                <script>
+                                    function print_d() {
+                                        window.open('../../cetak_data/cetak_gaji.php?jenis=<?=$_POST['jenis']?>', '_blank');
+                                    }
+                                </script>
+                            </input>
+                    </div>
                 </div>
             </form>
         </div>
-        <div class="col-md-4">
+        <!-- <div class="col-md-4">
             <form action="../../cetak_data/cetak_gaji.php" target="_blank" method="POST">
                 <div class="border p-2">
                     <div class="form-group ml-1" style="width:100%">
@@ -47,11 +56,11 @@
                         value="Print">
                 </div>
             </form>
-        </div>
+        </div> -->
     </div>
 
 
-    <div class="table-responsive">
+    <div class="table-responsive mt-4">
         <table id="datatabel" class="table table-bordered table-hover" width="100%">
             <thead class="table-info">
                 <tr align="center">
@@ -60,7 +69,7 @@
                     <th>Nama</th>
                     <th>Pangkat/Gol</th>
                     <th>Jenis</th>
-                    <th>Gaji Bersih</th>
+                    <th>Gaji</th>
                 </tr>
             </thead>
             <tbody>
@@ -78,8 +87,9 @@
                         }
                         else{
                             $no = 1;
-                            $sql = mysqli_query($koneksi,"SELECT * FROM data_pegawai
-                            INNER JOIN gaji ON data_pegawai.id_pegawai = gaji.id_pegawai");
+                            $sql = mysqli_query($koneksi,"SELECT * FROM riwayat_gaji
+                            INNER JOIN data_pegawai ON riwayat_gaji.id_pegawai = data_pegawai.id_pegawai
+                            INNER JOIN pangkat ON data_pegawai.id_pangkat = pangkat.id_pangkat");
                              while($row = mysqli_fetch_array($sql))
                              {
                             ?>
@@ -89,7 +99,7 @@
                                 <td><?php echo $row['nama']; ?></td>
                                 <td><?php echo $row['pangkat']?>/(<?=($row['golongan'])?>)</td>
                                 <td><?php echo $row['jenis']; ?></td>
-                                <td>Rp <?php echo number_format($row['jml_bersih'],0,',','.');?></td>
+                                <td>Rp <?php echo number_format($row['gaji'],0,',','.');?></td>
                                 </tr>
                             <?php
                             }

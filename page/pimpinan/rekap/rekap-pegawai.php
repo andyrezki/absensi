@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container-fluid" style="margin-bottom:200px">
 
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
@@ -27,31 +27,26 @@
                             <option value="HONORER">HONORER</option>
                         </select>
                     </div>
-                    <input type="submit" name="filter" class="form-control btn btn-primary text-center w-100"
+                    <div class="cl d-flex justify-content-center">
+                    <input type="submit" name="filter" class="form-control btn btn-primary w-25 mr-1"
                         value="Filter">
-                </div>
-            </form>
-        </div>
-        <div class="col-md-4">
-            <form action="../../cetak_data/cetak_data_pegawai.php" target="_blank" method="POST">
-                <div class="border p-2">
-                    <div class="form-group ml-1" style="width:100%">
-                        <label for="jenis">jenis</label>
-                        <select name="jenis" name="status" class="form-control">
-                            <option disabled selected>-- Pilih --</option>
-                            <option value="PNS">PNS</option>
-                            <option value="HONORER">HONORER</option>
-                        </select>
+                      <!--   <input class='btn btn-success w-25' onclick='print_d()' value="Cetak">
+                            <script>
+                                function print_d() {
+                                    window.open('../../cetak_data/cetak_data_pegawai.php?jenis=<?=$_POST['jenis']?>', '_blank');
+                                }
+                            </script>
+                        </input> -->
+                                        
                     </div>
-                    <input type="submit" name="cetak" class="form-control btn btn-success w-100"
-                        value="Print">
                 </div>
             </form>
         </div>
+       
     </div>
 
 
-    <div class="table-responsive">
+    <div class="table-responsive mt-2">
         <table id="datatabel" class="table table-bordered table-hover" width="100%">
             <thead class="table-info">
                 <tr align="center">
@@ -59,13 +54,13 @@
                     <th>NIK</th>
                     <th>Nama</th>
                     <th>Pangkat/Gol</th>
-                    <th>Divisi</th>
+                    <th>Bidang</th>
                     <th>Jenis</th>
                 </tr>
             </thead>
             <tbody>
                 <?php
-                        
+
                         if(isset($_POST['filter'])){
                             $pns = $_POST['jenis'] == 'PNS';
                             $honorer = $_POST['jenis'] == 'HONORER';
@@ -79,7 +74,8 @@
                         else{
                             $no = 1;
                             $sql = mysqli_query($koneksi,"SELECT * FROM data_pegawai
-                            INNER JOIN divisi ON data_pegawai.id_divisi = divisi.id_divisi");
+                            INNER JOIN pangkat ON data_pegawai.id_pangkat = pangkat.id_pangkat
+                            INNER JOIN bidang ON data_pegawai.id_bidang = bidang.id_bidang");
                              while($row = mysqli_fetch_array($sql))
                              {
                             ?>
@@ -88,7 +84,7 @@
                                 <td><?php echo $row['nik']; ?></td>
                                 <td><?php echo $row['nama']; ?></td>
                                 <td><?php echo $row['pangkat']?>/<?=($row['golongan'])?></td>
-                                <td><?php echo $row['nama_divisi']; ?></td>
+                                <td><?php echo $row['nama_bidang']; ?></td>
                                 <td><?php echo $row['jenis']; ?></td>
                                 </tr>
                             <?php
